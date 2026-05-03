@@ -1,0 +1,215 @@
+/* 
+  ExamWiki Design System
+  Impeccable Design Engineering Implementation
+*/
+
+:root {
+  /* Transitions */
+  --transition-fluid: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+  --header-height: 52px;
+  --sidebar-width: 320px;
+  --content-max-width: 800px;
+}
+
+/* Light Theme Tokens */
+body.light-theme {
+  --bg: #F5F4F0;
+  --surface: #FFFFFF;
+  --border: #E3E2DA;
+  --text: #1C1C1A;
+  --muted: #6B6A62;
+  --accent: #2952CC;
+  --badge-high: #FEE2E2;
+  --badge-high-text: #991B1B;
+  --shadow: 0 1px 3px rgba(0,0,0,0.05), 0 1px 2px rgba(0,0,0,0.1);
+}
+
+/* Dark Theme Tokens */
+body.dark-theme {
+  --bg: #09090B;
+  --surface: #121214;
+  --border: #27272A;
+  --text: #F4F4F5;
+  --muted: #A1A1AA;
+  --accent: #6681F0;
+  --badge-high: #450A0A;
+  --badge-high-text: #FECACA;
+  --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3), 0 2px 4px -1px rgba(0, 0, 0, 0.2);
+}
+
+/* Base Reset & Typography */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--bg);
+  color: var(--text);
+  font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  transition: var(--transition-fluid);
+  min-height: 100vh;
+}
+
+h1, h2, h3, .page-title {
+  font-family: 'Instrument Serif', serif;
+  font-style: italic;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+}
+
+code, pre, .mono {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.9em;
+}
+
+/* Layout Engine */
+.layout-container {
+  display: grid;
+  grid-template-columns: var(--sidebar-width) 1fr;
+  min-height: calc(100vh - var(--header-height));
+}
+
+#site-header {
+  position: sticky;
+  top: 0;
+  height: var(--header-height);
+  background-color: var(--surface);
+  border-bottom: 1px solid var(--border);
+  z-index: 100;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  display: flex;
+  align-items: center;
+  transition: var(--transition-fluid);
+}
+
+.header-content {
+  width: 100%;
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  font-weight: 700;
+  font-size: 1.1rem;
+  letter-spacing: -0.02em;
+  color: var(--accent);
+}
+
+#sidebar {
+  position: sticky;
+  top: var(--header-height);
+  height: calc(100vh - var(--header-height));
+  border-right: 1px solid var(--border);
+  padding: 32px 24px;
+  overflow-y: auto;
+  background-color: var(--bg);
+  transition: var(--transition-fluid);
+}
+
+#content-well {
+  padding: 48px;
+  display: flex;
+  justify-content: center;
+  background-color: var(--bg);
+  transition: var(--transition-fluid);
+}
+
+.content-container {
+  width: 100%;
+  max-width: var(--content-max-width);
+}
+
+/* Theme Toggle Button */
+#theme-toggle {
+  background: transparent;
+  border: 1px solid var(--border);
+  padding: 8px;
+  border-radius: 8px;
+  color: var(--text);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: var(--transition-fluid);
+}
+
+#theme-toggle:hover {
+  background-color: var(--surface);
+  border-color: var(--accent);
+  transform: translateY(-1px);
+}
+
+#theme-toggle:active {
+  transform: translateY(0);
+}
+
+.sun-icon { display: none; }
+.moon-icon { display: block; }
+
+body.dark-theme .sun-icon { display: block; }
+body.dark-theme .moon-icon { display: none; }
+
+/* Progress Bar */
+#progress-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 2px;
+  background-color: var(--accent);
+  z-index: 1000;
+  transition: width 0.1s ease;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 1024px) {
+  .layout-container {
+    grid-template-columns: 260px 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .layout-container {
+    grid-template-columns: 1fr;
+  }
+  
+  #sidebar {
+    display: none; /* Mobile menu implementation would go here */
+  }
+  
+  #content-well {
+    padding: 24px;
+  }
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--muted);
+}
