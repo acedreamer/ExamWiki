@@ -503,12 +503,13 @@ body.dark-theme .topic-content code {
 .search-hint-key {
   font-size: 0.7rem;
   font-weight: 800;
-  background-color: var(--surface);
+  background-color: var(--bg);
   border: 1px solid var(--border);
   padding: 2px 6px;
   border-radius: 4px;
   color: var(--muted);
 }
+
 
 /* Search Modal */
 .modal-overlay {
