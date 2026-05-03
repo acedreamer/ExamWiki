@@ -175,26 +175,119 @@ body.dark-theme .moon-icon { display: none; }
   transition: width 0.1s ease;
 }
 
-/* Responsive Adjustments */
-@media (max-width: 1024px) {
-  .layout-container {
-    grid-template-columns: 260px 1fr;
+/* --- High-End Responsive Architecture --- */
+
+/* Utility: Touch Targets */
+@media (max-width: 768px) {
+  button, a {
+    min-height: 44px;
+    min-width: 44px;
   }
 }
 
-@media (max-width: 768px) {
+/* Tablet & Mobile Overrides */
+@media (max-width: 1024px) {
+  :root {
+    --sidebar-width: 280px;
+  }
+
   .layout-container {
     grid-template-columns: 1fr;
   }
-  
+
   #sidebar {
-    display: none; /* Mobile menu implementation would go here */
+    position: fixed;
+    left: -100%;
+    z-index: 1500;
+    width: var(--sidebar-width);
+    background-color: var(--bg);
+    box-shadow: 20px 0 60px rgba(0,0,0,0.2);
+    transition: left 0.4s var(--transition-fluid);
   }
-  
+
+  #sidebar.open {
+    left: 0;
+  }
+
   #content-well {
-    padding: 24px;
+    padding: 32px 16px;
+  }
+
+  .topic-title {
+    font-size: 1.6rem;
   }
 }
+
+/* Specific Mobile Fixes (The "Screenshot" Fix) */
+@media (max-width: 768px) {
+  #site-header {
+    height: 60px;
+  }
+
+  .header-content {
+    padding: 0 16px;
+  }
+
+  /* Hide Clutter */
+  #breadcrumb, 
+  .search-hint-text, 
+  .search-hint-key,
+  .kbd {
+    display: none !important;
+  }
+
+  .logo {
+    font-size: 1.2rem;
+  }
+
+  .search-hint {
+    background: transparent;
+    border: none;
+    padding: 8px;
+  }
+
+  .search-hint::before {
+    content: "🔍";
+    font-size: 1.2rem;
+  }
+
+  /* Refine content containers */
+  .module-header {
+    padding: 16px 20px;
+  }
+
+  .module-title {
+    font-size: 1.2rem;
+  }
+
+  .topics-container {
+    padding: 0 16px 20px;
+  }
+
+  .topic-section {
+    padding: 32px 0;
+  }
+
+  /* Mobile Nav Toggle (Hamburger) */
+  #nav-toggle {
+    display: flex !important;
+    background: transparent;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    width: 40px;
+    height: 40px;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: var(--text);
+  }
+}
+
+/* Hidden by default, shown on mobile */
+#nav-toggle {
+  display: none;
+}
+
 
 /* Scrollbar styling */
 ::-webkit-scrollbar {

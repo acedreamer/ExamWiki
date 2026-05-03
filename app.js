@@ -43,6 +43,22 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Polish Code Blocks
   polishCodeBlocks();
+
+  // Mobile Nav Toggle
+  const navToggle = document.getElementById('nav-toggle');
+  const sidebar = document.getElementById('sidebar');
+  if (navToggle && sidebar) {
+    navToggle.addEventListener('click', () => {
+      sidebar.classList.toggle('open');
+    });
+
+    // Close sidebar when clicking a link (mobile)
+    sidebar.addEventListener('click', (e) => {
+      if (e.target.closest('.sidebar-topic-link')) {
+        sidebar.classList.remove('open');
+      }
+    });
+  }
 });
 
 /**
