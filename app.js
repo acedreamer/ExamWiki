@@ -109,6 +109,9 @@ function updateSidebarActiveLink(activeTopicId) {
       const parentModule = link.closest('.sidebar-module');
       modules.forEach(m => m.classList.remove('active'));
       parentModule.classList.add('active');
+      
+      // Scroll sidebar to the active link
+      link.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
     } else {
       link.classList.remove('active');
     }
